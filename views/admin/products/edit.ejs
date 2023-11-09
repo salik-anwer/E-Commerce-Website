@@ -1,0 +1,39 @@
+<%- include("../../partials/header.ejs") %>
+
+<div class="navbar-item">
+    <div class="navbar-buttons">
+        <div class="navbar-item">
+            <a href="/admin/products"><i class="fa fa-star"></i> Products</a>
+        </div>
+    </div>
+</div>
+
+</div>
+</nav>
+</header>
+
+<div class="columns is-centered">
+    <div class="column is-half">
+        <h1 class="subtitle">Update Product no. <%= locals.product.id %></h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label class="label">Product Name</label>
+                <input class="input" name="name" value="<%= locals.product.name %>" />
+                <% if(locals.nameError) %><p class="help is-danger"><%= locals.nameError %></p>
+            </div>
+            <div class="field">
+                <label class="label">Price</label>
+                <input class="input" name="price" value="<%= locals.product.price %>" />
+                <% if(locals.priceError) %><p class="help is-danger"><%= locals.priceError %></p>
+            </div>
+            <div class="field">
+                <label class="label">Product Image</label>  
+                <input class="input" name="image" type="file" />
+                <% if(locals.imageError) %><p class="help is-danger"><%= locals.imageError %></p>
+            </div>
+                <button class="button is-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+<%- include("../../partials/footer.ejs") %>

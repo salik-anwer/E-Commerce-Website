@@ -1,0 +1,36 @@
+<%- include("../../partials/header.ejs") %>
+
+</div>
+</nav>
+</header>
+
+<div class="control">
+    <h1 class="subtitle m-0">Products</h1>  
+    <a href="/admin/products/new" class="button is-primary">New Product</a>
+</div>
+<div class="columns is-centered">
+    <div class="column is-half">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(product => { %>
+                    <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.price %></td>
+                        <td><a href="/admin/products/<%= product._id %>/edit"><button class="button is-link">Edit</button></a></td>
+                        <td><form method="POST" action="/admin/products/<%= product._id %>/delete"><button class="button is-danger">Delete</button></form></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include("../../partials/footer.ejs") %>

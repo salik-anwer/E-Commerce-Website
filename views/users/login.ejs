@@ -1,0 +1,30 @@
+<%- include("../partials/userheader.ejs") %>
+
+</div>
+</nav>
+</header>
+
+<div class="container">
+    <div class="columns is-centered">
+        <div class="column is-one-quarter">
+            <form method="POST">
+                <h1 class="title">Log in</h1>
+                <div class="field">
+                    <label class="label">E-mail</label>
+                    <input required class="input" placeholder="E-mail" name="email" />
+                    <% if(locals.errorEmail) %> <p class="help is-danger"><%= locals.errorEmail %> </p>
+                </div>
+                <div class="field">
+                    <label class="label">Password</label>
+                    <input required class="input" placeholder="Password" name="password" type="password" />
+                    <% if(locals.errorPassword) %> <p class="help is-danger"><%= locals.errorPassword %> </p>
+                </div>
+                <button class="button is-primary">Login</button>
+                <br />
+            </form>
+            <a href="/user/signup">Need an account? Sign Up</a>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %>

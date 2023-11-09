@@ -1,0 +1,64 @@
+<%- include("../partials/publicheader.ejs") %>
+
+<nav class="navbar navbar-bottom">
+    <div class="container navbar-container">
+      <div>
+        <a href="/">
+          <h3 class="title">Cart</h3>
+        </a>
+      </div>
+      <div class="navbar-item">
+        <div class="navbar-buttons">
+          <div class="navbar-item">
+            <% if(locals.isCart) {%><a href="/"><i class="fa fa-house"></i> Home</a><% } %>
+            <% if(!locals.isCart) {%><a href="/cart"><i class="fa fa-shopping-cart"></i> Cart</a><% } %>
+          </div>
+          
+          <div class="navbar-item">
+            <a href="/user/logout"><i class="fas fa-right-from-bracket"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+</body>
+
+<div id="cart" class="container">
+    <div class="columns">
+        <div class="column"></div>
+        <div class="column is-four-fifths">
+            <h3 class="subtitle"><b>Your Cart</b></h3>
+            <div>
+                <% let total = 0; %>
+                <% items.forEach(item => {%>
+                    <div class="cart-item message">
+                        <h3 class="subtitle"><%= item.product.name %></h3>
+                        <div class="cart-right">
+                            <div>Rs.<%= item.product.price %> X <%= item.quantity %> = </div>
+                            <div class="price is-size-4">Rs.<%= item.product.price * item.quantity %></div>
+                            <% total = total + item.product.price * item.quantity %>
+                            <div class="remove">
+                                <form action="/cart/delete/<%= item._id %>" method="POST">
+                                    <button class="button is-danger">                  
+                                        <span class="icon is-small">
+                                        <i class="fas fa-times"></i>
+                                        </span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>  
+                <% }); %>
+            </div>
+            <div class="total message is-info">
+                <div class="message-header">Total</div>
+                <h1 class="title">Rs.<%= total %></h1>
+                <button class="button is-primary">Buy</button>
+            </div>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+
+<%- include("../partials/footer.ejs") %>
